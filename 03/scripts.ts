@@ -4,12 +4,17 @@ type Conn = {
     host: string,
     port: string,
     dbname: string
-}
+};
 
-const conexao = (dados: Conn) => {
+type DadosConexao = {
+    driver: string,
+    url: string
+};
+
+const conexao = (dados: Conn): Readonly<DadosConexao> => {
     const { username, password, host, port, dbname } = dados;
     return {
         driver: 'postgres',
         url: `postgresql://${username}:${password}@${host}:${port}/${dbname}`
     };
-}
+};
